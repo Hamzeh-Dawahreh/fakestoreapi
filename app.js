@@ -25,18 +25,33 @@ fetch("https://fakestoreapi.com/products")
     renderProducts();
   })
   .catch((error) => console.error(error));
+// function renderProducts() {
+//   const main = document.querySelector("main");
+//   main.innerHTML = products
+//     .map((product) => {
+//       return `
+//       <div class="product-card">
+//         <img src="${product.image}" alt="image">
+//         <h2>${product.title}</h2>
+//         <p>${product.description}</p>
+//         <p>${product.price}</p>
+//       </div>
+//     `;
+//     })
+//     .join("");
+// }
+
 function renderProducts() {
   const main = document.querySelector("main");
-  main.innerHTML = products
-    .map((product) => {
-      return `
+  const productCards = products.map(
+    (product) => `
       <div class="product-card">
-        <img src="${product.image}" alt="${product.title}">
+        <img src="${product.image}" alt="image">
         <h2>${product.title}</h2>
         <p>${product.description}</p>
-        <p>${product.price}</p>
+        <p class="price">$${product.price}</p>
       </div>
-    `;
-    })
-    .join("");
+    `
+  );
+  main.innerHTML = productCards.join("");
 }
