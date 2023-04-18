@@ -12,8 +12,7 @@ const products = [];
 fetch("https://fakestoreapi.com/products")
   .then((response) => response.json())
   .then((data) => {
-    for (let i = 0; i < 20; i++) {
-      const productData = data[i];
+    data.forEach((productData) => {
       const product = new Product(
         productData.title,
         productData.price,
@@ -21,7 +20,8 @@ fetch("https://fakestoreapi.com/products")
         productData.image
       );
       products.push(product);
-    }
+    });
+
     renderProducts();
   })
   .catch((error) => console.error(error));
